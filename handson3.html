@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<style>body{
+    font-size: 18px;
+    background-color:hsl(292, 100%, 50%);
+}
+.btn-link{
+    font-size: 115%;
+}
+
+.grid{
+    font-size: 300%;
+    margin-right: 50px;
+    margin-top:10px;
+    color: blue;;
+}
+td,tr{
+  color:white;
+    background-color: black;
+    margin-top:2px
+}</style>
+</head>
+<body>
+	<p class="container">
+		<div  data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+			<div class="d-flex flex-row-reverse ">
+				<span><i class="fas fa-th-large grid" style="color:blue"> </i></span>
+			</div>
+		</div>
+	</p>
+	  <div class="collapse show" id="collapseExample">
+		<div class="card-wrapper container mt-5">
+			<div class="row inner-wrapper">	  
+			</div>
+		</div>
+	  </div>
+	
+
+	  <p class="container">
+		<div  data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+			<div class="d-flex flex-row-reverse ">
+				<span><i class="fas fa-equals grid" style="color:brown"></i></span>
+			</div>
+		</div>
+	  </p>
+	
+	  <div class="collapse show" id="collapseExample2">
+		<div class="panel-body">	
+		  <div class="tbl_user_data container"></div>
+		</div>
+	  </div>
+	  
+	   
+	  
+	  <div class="panel panel-default">
+		<div class="panel-heading"><b>HTML Table Edits/Upates</b> </div>
+	  
+		<div class="panel-body">
+		  
+		  <p>All the changes will be displayed below</p>
+		  <div class="post_msg"> </div>
+	  
+		</div>
+	  </div>
+</body>
+
+<script type="text/javascript">
+	$(document).ready(function($)
+	{
+		//ajax row data
+	var ajax_data =
+	[
+	{name:"ROHIT",ID:'12',skills:"JS",project:'CTS Internal', HCM:'RAM'}, 
+	{name:"SASHANK",ID:'21',skills:"JS",project:'CTS Internal', HCM:'RAM'}, 
+	{name:"LAKSHMI",ID:'23',skills:"JS",project:'CTS Internal', HCM:'RAM'}, 
+	{name:"AKKA",ID:'55',skills:"HTML",project:'CTS Onsite', HCM:'RAM'}, 
+	{name:"SRIKANTH",ID:'44',skills:"CSS",project:'CTS Internal', HCM:'RAM'}, 
+	{name:"RISHI",ID:'98',skills:"Rubber Devil Fruit",project:'CTS Internal', HCM:'RAM'}, 
+	]
+	
+		var random_id = function  () 
+		{
+			var id_num = Math.random().toString(9).substr(2,3);
+			var id_str = Math.random().toString(36).substr(2);		
+			return id_num + id_str;
+		}
+	
+	
+		//--->create data table > start
+		var tbl = '';
+		tbl +='<table class="table table-hover">'
+	
+    
+    
+			//--->create table header > start
+			tbl +='<thead>';
+				tbl +='<tr>';
+				tbl +='<th>Name</th>';
+				tbl +='<th>ID</th>';
+				tbl +='<th>Skills</th>';
+				tbl +='<th>Project</th>';
+				tbl +='<th>HCM</th>';
+				tbl +='<th>Options</th>';
+				tbl +='</tr>';
+			tbl +='</thead>';
+			//--->create table header > end
+	
+			
+			//--->create table body > start
+			tbl +='<tbody>';
+				//--->create table body rows > start
+	$.each(ajax_data, function(index, val) 
+	{
+		//you can replace with your database row id
+		var row_id = random_id();
+		//loop through ajax row data
+		tbl +='<tr row_id="'+row_id+'">';
+			tbl +='<td ><div class="row_data" edit_type="click" col_name="name">'+val['name']+'</div></td>';
+			tbl +='<td ><div class="row_data" edit_type="click" col_name="ID">'+val['ID']+'</div></td>';
+			tbl +='<td ><div class="row_data" edit_type="click" col_name="skills">'+val['skills']+'</div></td>';
+			tbl +='<td ><div class="row_data" edit_type="click" col_name="project">'+val['project']+'</div></td>';
+			tbl +='<td ><div class="row_data" edit_type="click" col_name="HCM">'+val['HCM']+'</div></td>';
+			//--->edit options > start
+			tbl +='<td>';	
+		tbl +='<span class="btn_edit" > <a href="#" class="btn btn-link " row_id="'+row_id+'" ><i class="far fa-edit"></i></a> </span>';
+		tbl +='<span class="btn_remove" > <a href="#" class="btn btn-link " row_id="'+row_id+'" ><i class="far fa-trash-alt"></i></i></a> </span>';
+		//only show this button if edit button is clicked
+		tbl +='<span class="btn_save"> <a href="#" class="btn btn-link"  row_id="'+row_id+'"> <i class="far fa-save"></i></a></span>';
+		tbl +='<span class="btn_cancel"> <a href="#" class="btn btn-link" row_id="'+row_id+'"> <i class="far fa-times-circle"></i></a></span>';
+				tbl +='</td>';
+				//--->edit options > end			
+			tbl +='</tr>';
+		});			//--->create table body rows > end
+			tbl +='</tbody>';
+			//--->create table body > end
+		tbl +='</table>'	
+		//--->create data table > end
+	
+		var cardText = "";
+		$.each(ajax_data, function(index,val){
+			var row_id=random_id();
+
+cardText+='<section class="col-4 my-5" row_id='+row_id+' ><div><div class="card" style="width: 100%;"><img class="card-img-top" src="https://source.unsplash.com/random/500x500" alt="Card image cap"><div class="card-body"><span class="btn_cancel_2"> <a href="#" class="btn btn-link" > <i class="far fa-times-circle"></i></a></span><p class="card-text">'
+cardText += '<div class="d-flex flex-row"><span>Name: </span><div class="row_data ml-2" edit_type="click" style="width: 100%; "col_name="name"><p> '+val['name']+'</p></div></div>';
+cardText += '<div class="d-flex flex-row"><span>ID: </span><div class="row_data ml-2" edit_type="click" style="width: 100%;" col_name="ID"><p>'+val['ID']+'</p></div></div>';
+cardText += '<div class="d-flex flex-row"><span>Skills: </span><div class="row_data ml-2" edit_type="click" style="width: 100%;" col_name="skills"><p> '+val['skills']+'</p></div></div>';
+cardText += '<div class="d-flex flex-row"><span>Project: </span><div class="row_data ml-2" edit_type="click"  style="width: 100%;" col_name="project"><p> '+val['project']+'</p></div></div>';
+cardText += '<div class="d-flex flex-row"><span>HCM: </span><div class="row_data ml-2" edit_type="click"  style="width: 100%;" col_name="HCM"><p> '+val['HCM']+'</p></div></div>';
+cardText +='</p>'
+cardText+=''
+cardText += '<span class="btn_edit_2" row_id='+row_id+' > <a href="#" class="btn btn-link " >Edit</a> </span>'
+
+cardText += '<span class="btn_save_2" row_id='+row_id+'> <a href="#" class="btn btn-link " >Save</a> </span></div></div></div></section>'
+$(document).find('.inner-wrapper').html(cardText);
+
+})
+
+$(document).on('click', '.btn_edit_2', function(event) 
+		{
+			event.preventDefault();
+			var tbl_row = $(this).closest('section');
+	
+			var row_id = tbl_row.attr('row_id');
+			tbl_row.find('.btn_save').show();
+			tbl_row.find('.btn_cancel').show();
+			//hide edit button
+			tbl_row.find('.btn_edit').hide(); 
+			tbl_row.find('.btn_remove').hide(); 
+			//make the whole row editable
+			tbl_row.find('.row_data')
+			.attr('contenteditable', 'true')
+			.attr('edit_type', 'button')
+			.addClass('bg-warning')
+			.css('padding','1px')
+			//--->add the original entry > start
+			tbl_row.find('.row_data').each(function(index, val) 
+			{  
+				//this will help in case user decided to click on cancel button
+				$(this).attr('original_entry', $(this).html());		}); 		
+			//--->add the original entry > end
+		});
+$(document).on('click', '.btn_save_2', function(event) 
+		{
+			event.preventDefault();
+			var tbl_row = $(this).closest('section');
+
+			var row_id = tbl_row.attr('row_id');
+	
+			
+			//hide save and cacel buttons
+			tbl_row.find('.btn_save').hide();
+			tbl_row.find('.btn_cancel').hide();
+	
+			//show edit button
+			tbl_row.find('.btn_edit').show();
+			tbl_row.find('.btn_remove').show();
+	
+	
+			//make the whole row editable
+			tbl_row.find('.row_data')
+			.attr('edit_type', 'click')
+			.removeClass('bg-warning')
+			.css('padding','') 
+	
+			//--->get row data > start
+			var arr = {}; 
+			tbl_row.find('.row_data').each(function(index, val) 
+			{   
+				var col_name = $(this).attr('col_name');  
+				var col_val  =  $(this).html();
+				arr[col_name] = col_val;
+			});
+			//--->get row data > end
+	
+			//use the "arr"	object for your ajax call
+			$.extend(arr, {row_id:row_id});
+	
+			//out put to show
+			$('.post_msg').html( '<pre class="bg-success">'+JSON.stringify(arr, null, 2) +'</pre>')
+			 
+	
+		});
+		//--->save whole row entery > end
+$(document).on('click','.btn_cancel_2',function(event){
+			event.preventDefault();
+			var tbl_row = $(this).closest('section');
+	
+			var row_id = tbl_row.attr('row_id');
+			$(tbl_row).remove();
+
+		})
+	
+
+		//out put table data
+		$(document).find('.tbl_user_data').html(tbl);
+
+		
+	
+		$(document).find('.btn_save').hide();
+		$(document).find('.btn_cancel').hide();
+
+		
+
+		//--->make div editable > start
+$(document).on('click', '.row_data', function(event) 
+		{
+			event.preventDefault(); 
+	
+			if($(this).attr('edit_type') == 'button')
+			{
+				return false; 
+			}
+	
+			//make div editable
+			$(this).closest('div').attr('contenteditable', 'true');
+			//add bg css
+			$(this).addClass('bg-warning').css('padding','5px');
+	
+			$(this).focus();
+		})	
+		//--->make div editable > end
+	
+	
+		//--->save single field data > start
+$(document).on('focusout', '.row_data', function(event) 
+		{
+			event.preventDefault();
+			if($(this).attr('edit_type') == 'button')
+			{			return false; 		}
+	
+			var row_id = $(this).closest('tr').attr('row_id'); 		
+			var row_div = $(this)				
+			.removeClass('bg-warning') //add bg css
+			.css('padding','')
+	
+			var col_name = row_div.attr('col_name'); 
+			var col_val = row_div.html(); 
+			var arr = {};
+			arr[col_name] = col_val;
+			//use the "arr"	object for your ajax call
+			$.extend(arr, {row_id:row_id});
+			//out put to show
+			$('.post_msg').html( '<pre class="bg-success">'+JSON.stringify(arr, null, 2) +'</pre>');
+			
+		})	
+		//--->save single field data > end
+	
+	 
+		//--->button > edit > start	
+$(document).on('click', '.btn_edit', function(event) 
+		{
+			event.preventDefault();
+			var tbl_row = $(this).closest('tr');
+	
+			var row_id = tbl_row.attr('row_id');
+			tbl_row.find('.btn_save').show();
+			tbl_row.find('.btn_cancel').show();
+			//hide edit button
+			tbl_row.find('.btn_edit').hide(); 
+			tbl_row.find('.btn_remove').hide(); 
+			//make the whole row editable
+			tbl_row.find('.row_data')
+			.attr('contenteditable', 'true')
+			.attr('edit_type', 'button')
+			.addClass('bg-warning')
+			.css('padding','3px')
+			//--->add the original entry > start
+			tbl_row.find('.row_data').each(function(index, val) 
+			{  
+				//this will help in case user decided to click on cancel button
+				$(this).attr('original_entry', $(this).html());		}); 		
+			//--->add the original entry > end
+		});
+		//--->button > edit > end
+	
+	
+		//--->button > cancel > start	
+		$(document).on('click', '.btn_cancel', function(event) 
+		{
+			event.preventDefault();
+			var tbl_row = $(this).closest('tr');
+			var row_id = tbl_row.attr('row_id');
+	
+			//hide save and cacel buttons
+			tbl_row.find('.btn_save').hide();
+			tbl_row.find('.btn_cancel').hide();
+			//show edit button
+			tbl_row.find('.btn_edit').show();
+			tbl_row.find('.btn_remove').show();
+			//make the whole row editable
+			tbl_row.find('.row_data')
+			.attr('edit_type', 'click')
+			.removeClass('bg-warning')
+			.css('padding','') 
+			tbl_row.find('.row_data').each(function(index, val) 
+			{   
+				$(this).html( $(this).attr('original_entry') ); 		});  	});
+		//--->button > cancel > end
+	
+		//Delete row entry button > start
+$(document).on('click','.btn_remove',function(event){
+			event.preventDefault();
+			var tbl_row = $(this).closest('tr');
+	
+			var row_id = tbl_row.attr('row_id');
+			$(tbl_row).remove();
+
+		})
+		//Delete row entry button > end
+
+
+		//--->save whole row entery > start	
+$(document).on('click', '.btn_save', function(event) 
+		{
+			event.preventDefault();
+			var tbl_row = $(this).closest('tr');
+	
+			var row_id = tbl_row.attr('row_id');
+	
+			
+			//hide save and cacel buttons
+			tbl_row.find('.btn_save').hide();
+			tbl_row.find('.btn_cancel').hide();
+	
+			//show edit button
+			tbl_row.find('.btn_edit').show();
+			tbl_row.find('.btn_remove').show();
+	
+	
+			//make the whole row editable
+			tbl_row.find('.row_data')
+			.attr('edit_type', 'click')
+			.removeClass('bg-warning')
+			.css('padding','') 
+	
+			//--->get row data > start
+			var arr = {}; 
+			tbl_row.find('.row_data').each(function(index, val) 
+			{   
+				var col_name = $(this).attr('col_name');  
+				var col_val  =  $(this).html();
+				arr[col_name] = col_val;
+			});
+			//--->get row data > end
+	
+			//use the "arr"	object for your ajax call
+			$.extend(arr, {row_id:row_id});
+	
+			//out put to show
+			$('.post_msg').html( '<pre class="bg-success">'+JSON.stringify(arr, null, 2) +'</pre>')
+			 
+	
+		});
+		//--->save whole row entery > end
+	
+	
+	}); 
+	</script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+</html>
+
+ 
+
+
+ 
