@@ -1,6 +1,6 @@
 .maindisplay {
     background: lightgrey;
-    height: calc(100% / 3);
+    height: 100px ;
     padding: 5% !important;
     font-size: 4rem;
     text-align: right;
@@ -14,7 +14,10 @@
     overflow: auto;
 }
 .keypad {
-    height: calc(200% / 3);
+    height:500px;
+    width:500px;
+    margin:0px 25%;
+
 }
 .keys {
     margin: 0;
