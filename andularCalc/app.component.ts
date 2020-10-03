@@ -69,4 +69,18 @@ getAnswer() {
     this.subText = 'ERROR: Invalid Operation';
   }
   this.answered = true;
-}}
+}
+allClear(){
+ this.subText = ''; // The text that should appear in the sub-display
+this.mainText = ''; // The text that should appear in the main display
+// The first operand
+ // The second operand
+this.operator = ''; // The operator
+this.calculationString = ''; 
+// This is the string that denotes the operation being performed
+this.answered = false; 
+// A flag to check whether the solution has been processed
+this.operatorSet = false;
+  
+}
+}
