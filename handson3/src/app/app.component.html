@@ -1,0 +1,168 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <!-- JS, Popper.js, and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+  </script>
+</head>
+
+<body>
+<div class="container">
+    <h2>Form Validation <span>*</span></h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+        <div class="form-group">
+            <label for="associatename"></label>
+            <input type="text" class="form-control" id="associatename" formControlName="associatename"
+                placeholder="Associate Name" />
+            <div *ngIf="form.get('associatename').touched && form.get('associatename').invalid">
+                <div *ngIf="form.get('associatename').errors.required" class="alert alert-danger">
+                    Please enter the Associate Name.
+                </div>
+                <div *ngIf="form.get('associatename').errors.minlength || form.get('associatename').errors.maxlength || form.get('associatename').errors.pattern"
+                    class="alert alert-danger">
+                    Accepts Alphabets, space & Min 5 to Max 30 Char.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="associateId"></label>
+            <input type="text" class="form-control" id="associateId" formControlName="associateid"
+                placeholder="Associate Id" />
+            <div *ngIf="associateid.touched && associateid.invalid" class="alert alert-danger">
+                <div *ngIf="associateid.errors.required">
+                    Please enter the Associate id.
+                </div>
+                <div *ngIf="associateid.errors.minlength || associateid.errors.maxlength || associateid.errors.pattern">
+                    Invalid Associate Id. Accepts only Numeric, Min6 - Max6 char accepted.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="projectId"></label>
+            <input type="text" class="form-control" id="projectId" formControlName="projectid"
+                placeholder="Project ID" />
+            <div *ngIf="projectid.touched && projectid.invalid" class="alert alert-danger">
+                <div *ngIf="projectid.errors.required">Please enter the Project id.</div>
+                <div *ngIf="projectid.errors.minlength || projectid.errors.maxlength || projectid.errors.pattern">
+                    Invalid Project ID. Accepts only alphanumeric. No special Character Accepted. Min & Max 12 char
+                    accepted.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="offshore" id="offShore" value="option1"/>
+                <label class="form-check-label" for="offShore">Offshore</label>
+            </div>
+            <div class="form-group">
+                <select class="form-control" id="offShore">
+                    <option selected disabled>Select Location</option>
+                    <option>Chennai</option>
+                    <option>Bangalore</option>
+                    <option>Hyderabad</option>
+                    <option>Pune</option>
+                    <option>Kochi</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="onshore" id="onShore" value="option2"/>
+                <label class="form-check-label" for="onShore">Onshore</label>
+            </div> 
+            <div class="form-group">            
+            <select class="form-control" id="onShore">
+                <option selected disabled>Select Location</option>
+                <option>US</option>
+                <option>Non US</option>
+                </select>
+            </div>
+        </div>
+        <div class="checkboxList" formControlName="checklist">
+            <div class="list1">
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check1">
+                    <label class="form-check-label" for="check1">HTML5,CSS3,JS</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check2">
+                    <label class="form-check-label" for="check2">SASS</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check3">
+                    <label class="form-check-label" for="check3">ES5,ES6,ES7...</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check4">
+                    <label class="form-check-label" for="check4">Bootstrap 4</label>
+                </div>
+            </div>
+            <div class="list2">
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check5">
+                    <label class="form-check-label" for="check5">Angular 8</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check6">
+                    <label class="form-check-label" for="check6">React JS</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check7">
+                    <label class="form-check-label" for="check7">Veu JS</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check8">
+                    <label class="form-check-label" for="check8">TypeScript</label>
+                </div>
+            </div>
+            <div class="list3">
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check9">
+                    <label class="form-check-label" for="check9">Express JS</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check10">
+                    <label class="form-check-label" for="check10">Node JS</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check11">
+                    <label class="form-check-label" for="check11">Mango DB</label>
+                </div>
+            </div>
+           
+            </div>  
+        
+
+        <div class="form-group">
+            <label for="uploadProfile">Upload Profile</label>
+            <input type="file" accept=".png, .jpg, .jpeg" class="form-control-file" id="uploadProfile" formControlName="uploadprofile" />
+        </div>
+
+        <div class="form-group">
+            <label for="commentsTextarea"></label>
+            <textarea class="form-control" id="commentsTextarea" rows="2" placeholder="Comments" formControlName="comments"></textarea>
+        </div>
+        <div class="buttons">
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+            <button type="reset" class="btn btn-danger">Reset</button>
+        </div>
+    </form>
+
+</div>
+</body></html>
