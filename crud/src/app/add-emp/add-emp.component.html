@@ -1,0 +1,23 @@
+<div class="container text-center">
+    <h3> Add New Employee</h3>
+    <div class="container">
+        <form  action="" method="POST">
+            <label>firstName : </label>
+            <input ngModel name="firstName" #firstName="ngModel" type="text" name="empfirstName" id="empName" placeholder="Employee firstName"><br>
+            <label>ID : </label>
+            <input ngModel name="userId" #userId="ngModel" type="number" name="empuserId" id="empid" placeholder="Employee ID"><br>
+            <label>lastName : </label>
+            <input ngModel name="lastName" #lastName="ngModel" type="text" name="emplastName" id="empCompany" placeholder="last name"><br>
+            <label>phonenumber: </label>
+            <input ngModel name="phoneNumber" #phoneNumber="ngModel" type="text" name="empnumber" id="empSkills" placeholder="phone number"><br>
+            <label>email  : </label>
+            <input ngModel name="emailAddress" #emailAddress="ngModel" type="text" name="empProject" id="empProject" placeholder="Employee Project"><br>
+            <span>
+                <button class="btn btn-warning" (click)="createEmployee(firstName,lastName,userId,phoneNumber,emailAddress)">Add</button>
+                <button type="reset" class="btn btn-danger">Clear</button>
+            </span>
+
+        </form>
+
+    </div>
+</div>
