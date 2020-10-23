@@ -1,5 +1,5 @@
 //import { EmployeeService } from './employee.service';
-import { Employee } from './../model/employee.model';
+import { Employee } from './../model/employee.model';;
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
